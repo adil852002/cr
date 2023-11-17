@@ -1,0 +1,84 @@
+# - - - - - - -ORM QUERY  - - - - - - - -
+
+class Employees(models.Model):
+    name=models.CharField(max_length=200)
+    department=models.CharField(max_length=200)
+    salary=models.PositiveIntegerField()
+    email=models.EmailField(unique=True)
+    age=models.PositiveIntegerField(null=True)
+    contact=models.CharField(max_length=12) 
+
+python shell>>>    
+
+from cr.models import Employees
+Employees.objects.create(name="adil",department="hr",salary=80000)
+
+Employees.objects.create(name="arjun",department="attender",salary=95000,email="ajyou01@gmail.com",age=21,contact="9456789015")
+
+
+# - -- - - - - - -ORM QUERY for fetching all records - - - - - - - 
+
+>qs=Employees.objects.all()
+>qs
+
+#ORM QUERY for fetching specific records
+
+>qs=Employees.objects.get(id=7)
+>qs
+
+
+# --- - -- --- - ---ORM QUERY for FILTERING Employee records - - - - - - - 
+
+>qs=Employees.objects.filter(department="hr")
+>qs=Employees.objects.filter(salary__gte=50000)
+>qs=Employees.objects.filter(salary__lte=50000)
+> __gte : >=
+> __lte : <=
+> __gt  : >
+> __lt  : < 
+
+
+#  - - - - - -ORM QUERY for EXCLUDE- - - -- -
+
+> qs=Employee.objects.exclude(department="hr")
+>qs
+
+
+# - - - - - - ORM QUERY for UPDATE - - - - -
+
+
+>qs=Employees.objects.filter(id="1").update(salary=6000)
+>qs
+
+
+# - - - - - - ORM QUERY for DELETE - - - - -
+
+
+>qs=Employees.objects.filter(id="1").delete(salary=6000)
+>qs
+
+
+# - - - - - - ORM QUERY for SORT- - - - -
+
+              ASCENDING ORDER
+
+>qs=Employees.objects.all().order_by("salary")
+>qs
+
+
+             DESCENDING ORDER
+
+
+>qs=Employees.objects.all().order_by("-salary")
+>qs
+
+
+
+
+
+
+
+
+
+
+>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  {%load static%}
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body class="regstration">
+  <link rel="stylesheet" href="{%static 'css/style.css'%}">
+
+  <div>
+    {%if messages%}
+    {%for m in messages%}
+
+    {%if m.level == DEFAULT_MESSAGE_LEVELS.ERROR%}
+
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+      <strong>{{m}}</strong> You should check in on some of those fields below.
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+
+    {%endif%}
+
+    {%if m.level == DEFAULT_MESSAGE_LEVELS.SUCCESS%}
+
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+      <strong>{{m}}</strong> You should check in on some of those fields below.
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+
+    {%endif%}
+
+    {%endfor%}
+
+    {%endif%}
+
+    <div class="container ">
+
+      <form action="" method="post">
+        {%csrf_token%}
+
+        {{form.as_p}}
+        <button type="submit">REGISTER</button>
+
+        <DIv>
+          Already a User? <a href="{%url 'login' %}">LOGIN</a>
+        </DIv>
+      </form>
+
+    </div>
+
+
+</body>
+
+</html>

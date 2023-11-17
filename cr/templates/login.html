@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+{%load static%}
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LOGIN</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  <link rel="stylesheet" href="{%static 'css/style.css'%}">
+
+</head>
+
+<body class="bg-warnings">
+  <div>
+    {%if messages%}
+    {%for m in messages%}
+
+    {%if m.level == DEFAULT_MESSAGE_LEVELS.ERROR%}
+
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+      <strong>{{m}}</strong> You should check in on some of those fields below.
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+
+    {%endif%}
+
+    {%if m.level == DEFAULT_MESSAGE_LEVELS.SUCCESS%}
+
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+      <strong>{{m}}</strong> You should check in on some of those fields below.
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+
+    {%endif%}
+
+    {%endfor%}
+
+    {%endif%}
+
+    <div class="container text-center mt-3 ">
+
+      <form action="" method="post">
+        <H1>LOGIN</H1>
+        {%csrf_token%}
+
+        {{form.as_p}}
+        <button type="submit" class="btn btn-primary"
+          style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">
+          LOGIN
+        </button>
+        <div>
+          New User? &nbsp;&nbsp;<a href="{%url 'register' %}">Register Now</a>
+        </div>
+      </form>
+
+    </div>
+
+
+
+
+</body>
+
+</html>
